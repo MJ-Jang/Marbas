@@ -3,27 +3,19 @@ from glob import glob
 
 
 long_description = """
-* Nori in Apache Lucene is a korean morpological analyzer based on Mecab.
-* Pynori is a python-version of nori (Apache Lucene is written in Java).
-* The analysis results are the same (All test cases are passed). 
-* Pynori maybe a little slower than nori because of python script language and less optimized data structures.
-* Pynori includes mecab-ko-dic-2.1.1-20180720 for system dictionary.
-* Pynori is compatible with Python 3.7 and is distributed under the Apache License 2.0.
-* it will probably work in various python versions.
-* See, the left Homepage link, to see how to use this project.
-* See, the original nori at: https://github.com/apache/lucene-solr/tree/master/lucene/analysis/nori
-* See, mecab-ko-dic at: https://bitbucket.org/eunjeon/mecab-ko-dic
+* Marbas is a reformed tokenizer from pynori
+* Original pynori repo: https://github.com/gritmind/python-nori
 """
 
 
 
 setup(
-    name = 'pynori', 
-    version = '0.2.0', 
+    name = 'marbas',
+    version = '0.1.0',
 	
-    url = 'https://github.com/gritmind/python-nori', 
-    author = 'Yeongsu Kim', 
-    author_email = 'gritmind@gmail.com', 
+    url = 'https://github.com/MJ-Jang/Marbas.git',
+    author = 'MJ Jang',
+    author_email = 'mj.jang@sktair.com',
 	
     description = 'Lucene Nori, Korean Mopological Analyzer, in Python', 
     #long_description=open('README.md', encoding='utf-8').read(), 
@@ -63,8 +55,8 @@ setup(
     # installed, specify them here.  If using Python 2.6 or less, then these
     # have to be included in MANIFEST.in as well.
 	package_data={
-		'': ['pynori/resources/*'],
-		'': ['pynori/config.ini']
+		'': ['marbas/resources/*'],
+		'': ['marbas/config.ini']
 	},
 	include_package_data=True,
 	
