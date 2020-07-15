@@ -5,17 +5,17 @@ from datetime import datetime
 from configparser import ConfigParser
 
 #from enum import Enum, unique, auto 
-from pynori.char_unicode import *
-from pynori.dict.trie import Trie
-from pynori.dict.connection_costs import ConnectionCosts
-from pynori.dict.user_dictionary import UserDictionary
-from pynori.dict.known_dictionary import KnownDictionary
-from pynori.dict.unknown_dictionary import UnknownDictionary
-from pynori.dict.character_definition import CharacterDefinition, character_category_map
-from pynori.dictionary_token import DictionaryToken
-from pynori.decompound_token import DecompoundToken
-from pynori.pos import POS
-from pynori.token_attribute import TokenAttribute
+from .char_unicode import *
+from .dict.trie import Trie
+from .dict.connection_costs import ConnectionCosts
+from .dict.user_dictionary import UserDictionary
+from .dict.known_dictionary import KnownDictionary
+from .dict.unknown_dictionary import UnknownDictionary
+from .dict.character_definition import CharacterDefinition, character_category_map
+from .dictionary_token import DictionaryToken
+from .decompound_token import DecompoundToken
+from .pos import POS
+from .token_attribute import TokenAttribute
 
 
 cfg = ConfigParser()

@@ -1,13 +1,13 @@
 import os
 from configparser import ConfigParser
 
-from pynori.korean_tokenizer import KoreanTokenizer
-from pynori.korean_posstop_filter import KoreanPOSStopFilter
-from pynori.synonym_graph_filter import SynonymGraphFilter
-from pynori.preprocessing import Preprocessing
+from .korean_tokenizer import KoreanTokenizer
+from .korean_posstop_filter import KoreanPOSStopFilter
+from .synonym_graph_filter import SynonymGraphFilter
+from .preprocessing import Preprocessing
 
-from pynori.korean_tokenizer import DcpdMode
-from pynori.synonym_graph_filter import SynMode
+from .korean_tokenizer import DcpdMode
+from .synonym_graph_filter import SynMode
 
 
 cfg = ConfigParser()

@@ -1,4 +1,4 @@
-from pynori.pos import POS
+from ..pos import POS
 
 
 class Dictionary(object): # Abstract Class

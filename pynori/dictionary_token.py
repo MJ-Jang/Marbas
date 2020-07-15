@@ -1,5 +1,5 @@
-from pynori.pos import POS
-from pynori.token import Token
+from .pos import POS
+from .token import Token
 #from pynori.src.koreantokenizer import Type # TODO: circular import problem
 
 

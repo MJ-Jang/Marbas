@@ -3,6 +3,8 @@ from pynori.dict.character_definition import CharacterDefinition
 from pynori.dict.trie import Trie
 from pynori.pos import POS
 
+from typing import Text, List
+
 
 class UserDictionary(Dictionary): 
 	"""Build User Dictionary
@@ -16,16 +18,30 @@ class UserDictionary(Dictionary):
 	USER_POS = 'NNG'
 
 	@staticmethod
-	def open(USER_PATH):
+	def open(USER_PATH: Text = None, PATTERN_LIST: List = None):
+		"""
+		:param USER_PATH: user dictionary path
+		:param PATTERN_LIST: List of POS patterns
+		ex) 단일어: ['식사'] 복합어: ['이번달 이번 달']
+		"""
+		if not USER_PATH and not PATTERN_LIST:
+			raise ValueError("At least one of USER_PATH or PATTERN_LIST should be given")
+
 		entries = []
-		with open(USER_PATH, 'r', encoding='UTF8') as rf:
-			for line in rf:
-				line = line.strip()
-				if len(line) == 0:
-					continue
-				if line[:2] == '# ': # 주석 line
-					continue
-				entries.append(line)
+
+		if USER_PATH:
+			with open(USER_PATH, 'r', encoding='UTF8') as rf:
+				for line in rf:
+					line = line.strip()
+					if len(line) == 0:
+						continue
+					if line[:2] == '# ': # 주석 line
+						continue
+					entries.append(line)
+
+		if PATTERN_LIST:
+			entries += PATTERN_LIST
+
 		if len(entries) == 0:
 			return None
 		else:
@@ -48,7 +64,7 @@ class UserDictionary(Dictionary):
 			rightId = ""
 		
 			if token == lastToken:
-			    continue
+				continue
 		
 			lastChar = list(entry)[0]
 			if charDef.isHangul(lastChar):

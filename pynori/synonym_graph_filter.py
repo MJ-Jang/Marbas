@@ -2,8 +2,8 @@ import os
 from copy import deepcopy
 
 from configparser import ConfigParser
-from pynori.dict.trie import Trie
-from pynori.token_attribute import TokenAttribute
+from .dict.trie import Trie
+from .token_attribute import TokenAttribute
 
 cfg = ConfigParser()
 #PATH_CUR = os.getcwd() + '/pynori'

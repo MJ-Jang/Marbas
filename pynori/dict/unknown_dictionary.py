@@ -1,7 +1,7 @@
-from pynori.dict.dictionary import Dictionary
-from pynori.dict.character_definition import CharacterDefinition
-from pynori.dict.trie import Trie
-from pynori.pos import POS
+from .dictionary import Dictionary
+from .character_definition import CharacterDefinition
+from .trie import Trie
+from ..pos import POS
 
 
 class UnknownDictionary(Dictionary):
