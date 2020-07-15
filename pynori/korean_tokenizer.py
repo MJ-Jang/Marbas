@@ -8,7 +8,8 @@ from configparser import ConfigParser
 from .char_unicode import *
 from .dict.trie import Trie
 from .dict.connection_costs import ConnectionCosts
-from .dict.user_dictionary import UserDictionary
+# from .dict.user_dictionary import UserDictionary
+from .dict.smart_user_dictionary import UserDictionary
 from .dict.known_dictionary import KnownDictionary
 from .dict.unknown_dictionary import UnknownDictionary
 from .dict.character_definition import CharacterDefinition, character_category_map
@@ -767,7 +768,7 @@ class KoreanTokenizer(object):
 							morpheme = morphemes[i]
 
 							if token.getPOSType() == POS.Type.COMPOUND:
-								assert endOffset - len(morpheme.surfaceForm) >= 0
+								# assert endOffset - len(morpheme.surfaceForm) >= 0
 								#compoundToken = DecompoundToken(morpheme.posTag, morpheme.surfaceForm, endOffset - len(morpheme.surfaceForm), endOffset, backPosType, morphemes)
 								compoundToken = DecompoundToken(posTag=morpheme.posTag, surfaceForm=morpheme.surfaceForm, 
 																startOffset=endOffset-len(morpheme.surfaceForm), endOffset=endOffset, 
