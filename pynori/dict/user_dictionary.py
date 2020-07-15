@@ -45,7 +45,7 @@ class UserDictionary(Dictionary):
 		if len(entries) == 0:
 			return None
 		else:
-			return UserDictionary(entries)
+			return UserDictionary(entries), entries
 
 	def __init__(self, entries):
 		charDef = CharacterDefinition()

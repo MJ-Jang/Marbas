@@ -72,13 +72,18 @@ class KoreanTokenizer(object):
 	MAX_UNKNOWN_WORD_LENGTH = 1024;	
 	MAX_BACKTRACE_GAP = 1024;	
 	
-	def __init__(self, 
+	def __init__(self,
 				 verbose,
-				 path_userdict,
 				 decompound_mode,
 				 infl_decompound_mode,
 				 output_unknown_unigrams,
-				 discard_punctuation):
+				 discard_punctuation,
+				 path_userdict = None,
+				 userdict_patterns = None):
+
+		if not path_userdict and not userdict_patterns:
+			raise ValueError("At least one of path_userdict or userdict_patterns should be given")
+
 		self.mode = decompound_mode
 		self.infl_mode = infl_decompound_mode
 		self.output_unknown_unigrams = output_unknown_unigrams
@@ -86,11 +91,10 @@ class KoreanTokenizer(object):
 		self.verbose = verbose
 		self.buffer = KoreanTokenizer.Buffer()
 		self.character_definition = CharacterDefinition()
-		self.user_dict = UserDictionary.open(PATH_CUR+path_userdict)
-		#start_main = datetime.now()
+
+		self.user_dict, self.entries = UserDictionary.open(USER_PATH=path_userdict, PATTERN_LIST=userdict_patterns)
+
 		self.kn_dict = KnownDictionary.open(PATH_CUR+PATH_KN_DICT)
-		#end_main = datetime.now()
-		#print('\n RUN TIME: {}\n'.format(end_main - start_main))
 		self.unk_dict = UnknownDictionary.open(PATH_CUR+PATH_UNK_DICT)
 		self.conn_costs = ConnectionCosts.open(PATH_CUR+PATH_CONN_COST)
 		self.reset_state()
