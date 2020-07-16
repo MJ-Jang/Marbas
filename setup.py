@@ -1,6 +1,8 @@
 from setuptools import setup, find_packages
 from glob import glob
 
+with open("requirements.txt") as f:
+    required = f.read().splitlines()
 
 long_description = """
 * Marbas is a reformed tokenizer from pynori
@@ -24,7 +26,7 @@ setup(
 	
 	license='Apache 2.0',
 	
-    install_requires = ['cython'],
+    install_requires = required + ['cython'],
     zip_safe = False,
 	
 	
