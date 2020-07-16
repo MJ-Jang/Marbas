@@ -22,7 +22,6 @@ class UserDictionary(Dictionary):
         """
         :param USER_PATH: user dictionary path
         :param PATTERN_LIST: List of POS patterns
-        ex) 단일어: ['식사'] 복합어: ['이번달 이번 달']
         """
         if not USER_PATH and not PATTERN_LIST:
             raise ValueError("At least one of USER_PATH or PATTERN_LIST should be given")

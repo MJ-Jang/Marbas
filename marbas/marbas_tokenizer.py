@@ -4,6 +4,7 @@ import dill
 from configparser import ConfigParser
 
 from .korean_tokenizer import KoreanTokenizer
+from .error_corrector import KoreanErrorCorrector
 from .korean_posstop_filter import KoreanPOSStopFilter
 from .synonym_graph_filter import SynonymGraphFilter
 # from .preprocessing import Preprocessing
@@ -46,14 +47,13 @@ class MarbasTokenizer(object):
                  verbose=VERBOSE,
                  path_userdict=None,
                  userdict_patterns=None,
+                 path_errorfix_dict = None,
+                 errorfix_patterns = None,
                  decompound_mode=DECOMPOUND_MODE,
                  infl_decompound_mode=INFL_DECOMPOUND_MODE,
                  output_unknown_unigrams=OUTPUT_UNKNOWN_UNIGRAMS,
                  discard_punctuation=DISCARD_PUNCTUATION,
-                 pos_filter=USE_POS_FILTER,
-                 stop_tags=KoreanPOSStopFilter.DEFAULT_STOP_TAGS,
-                 synonym_filter=USE_SYNONYM_FILTER,
-                 mode_synonym=MODE_SYNONYM_FILTER):
+                 ):
 
         self.kor_tokenizer = KoreanTokenizer(verbose,
                                              decompound_mode,
@@ -68,6 +68,8 @@ class MarbasTokenizer(object):
         #     self.syn_graph_filter = SynonymGraphFilter(preprocessor=self.preprocessor,
         #                                                kor_tokenizer=self.kor_tokenizer,
         #                                                mode_synonym=self.mode_synonym)
+
+        self.error_corrector = KoreanErrorCorrector(path_errorfix_dict, errorfix_patterns)
 
         self.tok_to_id = {}
         self.id_to_tok = {}
@@ -87,6 +89,7 @@ class MarbasTokenizer(object):
         while self.kor_tokenizer.increment_token():
             pass
         tkn_attr_obj = self.kor_tokenizer.tkn_attr_obj
+        tkn_attr_obj = self.error_corrector.correct(tkn_attr_obj)
 
         outp = {
             'tokens': tkn_attr_obj.__dict__.get('termAtt'),
