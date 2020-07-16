@@ -153,12 +153,14 @@ class MarbasTokenizer(object):
             self.id_to_tok[i+len_dict] = t
             self.tok_to_id[t] = i+len_dict
 
-    def save_model(self, save_path: Text, save_prefix: Text):
+    def save_model(self, save_prefix: Text, save_path: Text = None):
         obj = {
             "tok_to_id": self.tok_to_id,
             "id_to_tok": self.id_to_tok,
             "entries": self.kor_tokenizer.entries
         }
+        if not save_path:
+            save_path = './'
 
         with open(os.path.join(save_path, save_prefix+'.model'), 'wb') as saveFile:
             dill.dump(obj, saveFile)
