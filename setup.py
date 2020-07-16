@@ -55,8 +55,9 @@ setup(
     # installed, specify them here.  If using Python 2.6 or less, then these
     # have to be included in MANIFEST.in as well.
 	package_data={
-		'': ['marbas/resources/*'],
-		'': ['marbas/config.ini']
+        '': ['marbas/resources/*',
+             'marbas/config.ini',
+             'marbas/resources/mecab-ko-dic-2.1.1-20180720/*']
 	},
 	include_package_data=True,
 	

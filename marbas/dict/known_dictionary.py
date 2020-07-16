@@ -32,7 +32,7 @@ class KnownDictionary(Dictionary):
 		#			entries += open(PATH_EACH, 'r', encoding='UTF8').readlines()
 
 		if os.path.isfile(KNOWN_PATH) == False:
-			import pynori.resources.pkl_mecab_csv.compress
+			from ..resources.pkl_mecab_csv import compress
 
 		with gzip.open(KNOWN_PATH, 'rb') as rf:
 			entries = pickle.load(rf) # csv 데이터를 포함한 Trie 자료구조.

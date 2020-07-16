@@ -1,4 +1,4 @@
-from ..pos import POS
+from marbas.pos import POS
 
 
 class Dictionary(object): # Abstract Class

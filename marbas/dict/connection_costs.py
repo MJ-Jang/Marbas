@@ -28,7 +28,7 @@ class ConnectionCosts(object):
 		#    total_entries += entries
 
 		if os.path.isfile(COST_PATH) == False:
-			import pynori.resources.pkl_mecab_matrix.compress
+			import marbas.resources.pkl_mecab_matrix.compress
 
 		with gzip.open(COST_PATH, 'rb') as rf:
 			total_entries = pickle.load(rf) # 딕셔너리 타입 반환.
