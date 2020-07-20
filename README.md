@@ -25,9 +25,11 @@ print(tok.tokenize('바로 집으로 튀어가라'))
 유저가 정의한 pos tagging을 수행합니다.
 ##### a. dictionary format
 ```text
-일시정지신청|일시정지_NNG 신청_NNG\n
-홀리몰리|홀리_VV 몰리_NNG\n
-중증급성호흡기증후군|중증_NNG 급성호흡기_NNG 증후군_NNG\n
+일시정지신청|일시정지_NNG 신청_NNG
+
+홀리몰리|홀리_VV 몰리_NNG
+
+중증급성호흡기증후군|중증_NNG 급성호흡기_NNG 증후군_NNG
 ```
 ##### b. usage
 ```python
