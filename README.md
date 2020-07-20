@@ -17,16 +17,16 @@ tok = MarbasTokenizer(userdict_patterns=['바로 로밍|바로_NNG 로밍_NNG',
                                          '바로로밍|바로_NNG 로밍_NNG'])
 
 print(tok.tokenize('바로 로밍 신청하려고요'))
-print(tok.tokenize('바로로밍 쓰레기'))
+print(tok.tokenize('바로로밍 좋아요'))
 print(tok.tokenize('바로 집으로 튀어가라'))
 ```
 
 ### 2) User dictionary
 ##### a. dictionary format
 ```text
-일시정지신청|일시정지_NNG 신청_NNG
-홀리몰리|홀리_VV 몰리_NNG
-중증급성호흡기증후군|중증_NNG 급성호흡기_NNG 증후군_NNG
+일시정지신청|일시정지_NNG 신청_NNG\n
+홀리몰리|홀리_VV 몰리_NNG\n
+중증급성호흡기증후군|중증_NNG 급성호흡기_NNG 증후군_NNG\n
 ```
 ##### b. usage
 ```python
