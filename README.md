@@ -52,7 +52,17 @@ tok = MarbasTokenizer(path_userdict='test_userdict.txt',
 print(tok.tokenize('중증급성호흡기증후군이 뭐에요?'))
 ```
 
-### 4) Train, save, and load
+### 4) Noun extract
+명사 tag인 token만 추출합니다.
+```python
+from marbas.marbas_tokenizer import MarbasTokenizer
+
+tok = MarbasTokenizer(userdict_patterns=['바로 로밍|바로_NNG 로밍_NNG',
+                                         '바로로밍|바로_NNG 로밍_NNG'])
+print(tok.extract_nouns('바로 로밍 신청은 어떻게 하나요?'))
+```
+
+### 5) Train, save, and load
 Tokenizer를 쉽게 사용하기 위해 token -> index 사전을 구축하는 작업입니다. 
 Default token list: UNK, START, END, PAD, CLS, SEP
 ```python

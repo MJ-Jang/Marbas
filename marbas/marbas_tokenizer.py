@@ -97,6 +97,14 @@ class MarbasTokenizer(object):
         }
         return outp
 
+    def extract_nouns(self, in_string):
+        """
+        Extract nouns only
+        """
+        outp = self.tokenize(in_string)
+        tokens, tags = outp['tokens'], outp['tags']
+        return list(filter(lambda x: x[1].startswith('N'), zip(tokens, tags)))
+
     def text_to_id(self, in_string):
         tokens = self.tokenize(in_string)['tokens']
         return [self.tok_to_id[t] for t in tokens]
@@ -180,5 +188,5 @@ class MarbasTokenizer(object):
                                              infl_decompound_mode=INFL_DECOMPOUND_MODE,
                                              output_unknown_unigrams=OUTPUT_UNKNOWN_UNIGRAMS,
                                              discard_punctuation=DISCARD_PUNCTUATION,
-                                             path_userdict = None,
-                                             userdict_patterns = res['entries'])
+                                             path_userdict=None,
+                                             userdict_patterns=res['entries'])
