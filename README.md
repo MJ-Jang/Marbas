@@ -22,6 +22,7 @@ print(tok.tokenize('바로 집으로 튀어가라'))
 ```
 
 ### 2) User dictionary
+유저가 정의한 pos tagging을 수행합니다.
 ##### a. dictionary format
 ```text
 일시정지신청|일시정지_NNG 신청_NNG\n
@@ -37,6 +38,7 @@ print(tok.tokenize('홀리몰리~'))
 ```
 
 ### 3) Postprocess
+오분석된 결과에 대한 수정을 진행합니다.
 ##### a. dictionary format
 ```text
 중증급성호흡기증후군|중증_NNG 급성호흡기_NNG 증후군_NNG|중증_NNG 급성_NNG 호흡기_NNG 증후군_NNG
