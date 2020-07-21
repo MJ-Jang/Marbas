@@ -5,6 +5,8 @@ from ..pos import POS
 
 from typing import Text, List
 
+import pandas as pd
+
 
 class UserDictionary(Dictionary):
     """Build User Dictionary
@@ -29,17 +31,45 @@ class UserDictionary(Dictionary):
         entries = []
 
         if USER_PATH:
-            with open(USER_PATH, 'r', encoding='UTF8') as rf:
-                for line in rf:
-                    line = line.strip()
-                    if len(line) == 0:
-                        continue
-                    if line[:2] == '# ':  # 주석 line
-                        continue
-                    entries.append(line)
+            if USER_PATH.endswith('.txt'):
+                with open(USER_PATH, 'r', encoding='UTF-8') as rf:
+                    user_dict = rf.readlines()
+                user_dict = [s.strip() for s in user_dict]
+                user_dict = list(set(user_dict))
+
+            elif USER_PATH.endswith('.tsv'):
+                user_dict = pd.read_csv(USER_PATH, sep='\t', encoding='utf-8')
+                user_dict = user_dict[user_dict.keys()[0]].tolist()
+                user_dict = [s.strip() for s in user_dict]
+                user_dict = list(set(user_dict))
+
+            elif USER_PATH.endswith('.csv'):
+                user_dict = pd.read_csv(USER_PATH, sep=',', encoding='utf-8')
+                user_dict = user_dict[user_dict.keys()[0]].tolist()
+                user_dict = [s.strip() for s in user_dict]
+                user_dict = list(set(user_dict))
+            else:
+                raise TypeError("Specified file format is not supported")
+
+            for line in user_dict:
+                line = line.strip()
+                if len(line) == 0:
+                    continue
+                if line[:2] == '# ':
+                    continue
+                entries.append(line)
+
+            # with open(USER_PATH, 'r', encoding='UTF8') as rf:
+            #     for line in rf:
+            #         line = line.strip()
+            #         if len(line) == 0:
+            #             continue
+            #         if line[:2] == '# ':  # 주석 line
+            #             continue
+            #         entries.append(line)
 
         if PATTERN_LIST:
-            entries += PATTERN_LIST
+            entries += list(set(PATTERN_LIST))
 
         if len(entries) == 0:
             return None
