@@ -68,8 +68,10 @@ class MarbasTokenizer(object):
         #     self.syn_graph_filter = SynonymGraphFilter(preprocessor=self.preprocessor,
         #                                                kor_tokenizer=self.kor_tokenizer,
         #                                                mode_synonym=self.mode_synonym)
-
-        self.error_corrector = KoreanErrorCorrector(path_errorfix_dict, errorfix_patterns)
+        if path_errorfix_dict or errorfix_patterns:
+            self.error_corrector = KoreanErrorCorrector(path_errorfix_dict, errorfix_patterns)
+        else:
+            self.error_corrector = None
 
         self.tok_to_id = {}
         self.id_to_tok = {}
@@ -89,7 +91,8 @@ class MarbasTokenizer(object):
         while self.kor_tokenizer.increment_token():
             pass
         tkn_attr_obj = self.kor_tokenizer.tkn_attr_obj
-        tkn_attr_obj = self.error_corrector.correct(tkn_attr_obj)
+        if self.error_corrector:
+            tkn_attr_obj = self.error_corrector.correct(tkn_attr_obj)
 
         outp = {
             'tokens': tkn_attr_obj.__dict__.get('termAtt'),
