@@ -8,6 +8,18 @@ from typing import Text, List
 import pandas as pd
 
 
+def lower_pattern(line: str):
+    word, pattern = line.split('|')
+    new_word = word.lower()
+    new_pattern = []
+    for p in pattern.split(' '):
+        w, tag = p.split('_')
+        new_pattern.append(w.lower() + '_' + tag)
+    new_pattern = ' '.join(new_pattern)
+    new_line = new_word + '|' + new_pattern
+    return new_line
+
+
 class UserDictionary(Dictionary):
     """Build User Dictionary
     """
@@ -50,6 +62,9 @@ class UserDictionary(Dictionary):
                 user_dict = list(set(user_dict))
             else:
                 raise TypeError("Specified file format is not supported")
+            #
+            entries = []
+            user_dict = ['SKT|SKT_NNG', '일시정지|일시_NNG 정지_NNG', '시발|시발_NNG']
 
             for line in user_dict:
                 line = line.strip()
@@ -58,6 +73,9 @@ class UserDictionary(Dictionary):
                 if line[:2] == '# ':
                     continue
                 entries.append(line)
+                line_lower = lower_pattern(line)
+                if line_lower not in entries:
+                    entries.append(line_lower)
 
             # with open(USER_PATH, 'r', encoding='UTF8') as rf:
             #     for line in rf:
