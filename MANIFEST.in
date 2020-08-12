@@ -8,3 +8,4 @@ include marbas/resources/pkl_mecab_matrix/matrix_def.pkl
 include marbas/resources/pkl_mecab_csv/mecab_csv.pkl
 include marbas/resources/mecab-ko-dic-2.1.1-20180720/*
 include marbas/resources/mecab-ko-dic-2.1.1-20180720/tools/*
+include marbas/resources/mecab_custom_csv.pkl
