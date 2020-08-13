@@ -1,8 +1,6 @@
 from setuptools import setup, find_packages
 from glob import glob
-import os
 
-os.system("bash apply_custom.sh")
 
 with open("requirements.txt") as f:
     required = f.read().splitlines()
