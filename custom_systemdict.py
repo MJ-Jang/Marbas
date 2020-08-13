@@ -119,7 +119,7 @@ for entry in tqdm(total_entries):
 # with gzip.open('mecab_csv.pkl', 'wb') as wf:
 #    pickle.dump(sysTrie, wf)
 
-output_f_nm = 'mecab_custom_csv.pkl'
+output_f_nm = 'mecab_csv.pkl'
 with gzip.open(output_f_nm, 'wb') as wf:
     pickle.dump(refined_data, wf)
 
