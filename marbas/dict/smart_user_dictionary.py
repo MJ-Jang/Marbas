@@ -64,7 +64,6 @@ class UserDictionary(Dictionary):
                 raise TypeError("Specified file format is not supported")
             #
             entries = []
-            user_dict = ['SKT|SKT_NNG', '일시정지|일시_NNG 정지_NNG', '시발|시발_NNG']
 
             for line in user_dict:
                 line = line.strip()
